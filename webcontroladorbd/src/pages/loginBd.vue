@@ -91,13 +91,22 @@ export default {
         this.password = null
         console.log(result.data.success)
         if(result.data.success){
+          localStorage.setItem('user', JSON.stringify(result.data))
+          console.log('login exitoso')
           this.$router.push('/mainPagina')
         } else {
-          console.log('intento de nuevo')
+          this.usuario = null
+          this.roleIdSeleccionado = null
+          this.password = null
+          alert('Usuario o contraseña incorrectos')
         }
 
-      } catch(error) {
-        console.log(error)
+      } catch( error) {
+          console.log(error)
+          this.usuario = null
+          this.roleIdSeleccionado = null
+          this.password = null
+          alert('Usuario o contraseña incorrectos')
       }
     },
     obtieneRole(m,n) {
